@@ -31,7 +31,8 @@ jobs:
         run: |
           docker build \
           -t ghcr.io/${REPO_LC}/productmanagement-api:${BRANCH}-${SHA} \
-          ./Backend/ProductManagement.API
+          ./Backend/ProductManagement.API \
+          Backend
 
       - name: Build Frontend Image
         run: |
