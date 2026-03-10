@@ -10,9 +10,11 @@ namespace ProductManagement.Entities.DataContext
    this IServiceCollection services,
    IConfiguration config)
         {
+            Console.WriteLine($"DB CONNECTION: {config.GetConnectionString("DefaultConnection")}");
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(
-                    config.GetConnectionString("DefaultConnection")
+                    config.GetConnectionString("DefaultConnection"),
+                     b => b.MigrationsAssembly("ProductManagement.Entities")
                 ));
         }
     }

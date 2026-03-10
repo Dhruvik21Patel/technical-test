@@ -8,7 +8,7 @@ import type {
 import { toast } from "react-toastify";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: "https://localhost:7261/api/",
+  baseURL: "http://localhost:5000/api/",
   headers: {
     "Content-Type": "application/json",
   },

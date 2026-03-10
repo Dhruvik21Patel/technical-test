@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ProductManagement.API.Extensions;
 using ProductManagement.API.Middlewares;
 using ProductManagement.BusinessAccess.Utilities;
@@ -46,6 +47,23 @@ builder.Services.ConfigureCors();
 builder.Services.AddTransient<ErrorHandlerMiddleware>();
 
 WebApplication? app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var db = services.GetRequiredService<AppDbContext>();
+    var logger = services.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+        db.Database.Migrate();
+        logger.LogInformation("Database migration completed");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Database migration failed");
+    }
+}
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
 

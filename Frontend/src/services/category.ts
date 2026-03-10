@@ -8,8 +8,8 @@ import type {
 const CATEGORY_API_BASE = "category";
 
 export const getCategories = async (
-): Promise<IAPIResponse<Category>> => {
-  const response = await axios.get<IAPIResponse<Category>>(CATEGORY_API_BASE
+): Promise<IAPIResponse<Category[]>> => {
+  const response = await axios.get<IAPIResponse<Category[]>>(CATEGORY_API_BASE
   );
   return response.data;
 };
