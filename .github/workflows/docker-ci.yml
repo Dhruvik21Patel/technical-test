@@ -31,13 +31,13 @@ jobs:
         run: |
           docker build \
           -t ghcr.io/${REPO_LC}/productmanagement-api:${BRANCH}-${SHA} \
-          ./backend
+          ./Backend/ProductManagement.API
 
       - name: Build Frontend Image
         run: |
           docker build \
           -t ghcr.io/${REPO_LC}/productmanagement-frontend:${BRANCH}-${SHA} \
-          ./frontend
+          ./Frontend
 
       - name: Push API Image
         run: |
