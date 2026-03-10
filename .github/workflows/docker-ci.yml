@@ -1,5 +1,9 @@
 name: Build Docker Images
 
+permissions:
+  contents: read
+  packages: write
+  
 on:
   push:
     branches:
@@ -24,8 +28,7 @@ jobs:
           echo "REPO_LC=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Login to GitHub Container Registry
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build API Image
         run: |
